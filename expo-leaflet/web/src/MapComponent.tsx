@@ -68,18 +68,18 @@ const MapLayers = (props: MapLayersProps) => {
 
 const toLatLngLiteral = (latLng: LatLng): LatLngLiteral => {
   return {
-    lat: latLng.lat,
-    lng: latLng.lng,
+    lat: latLng?.lat,
+    lng: latLng?.lng,
   }
 }
 
 const bounds = (map?: LeafletMap | null): LatLngBoundsLiteral => {
   const bound = map?.getBounds()!
-  const northEast = bound.getNorthEast()
-  const southWest = bound.getSouthWest()
+  const northEast = bound?.getNorthEast()
+  const southWest = bound?.getSouthWest()
   return [
-    [northEast.lat, northEast.lng],
-    [southWest.lat, southWest.lng],
+    [northEast?.lat, northEast?.lng],
+    [southWest?.lat, southWest?.lng],
   ]
 }
 
