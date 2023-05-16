@@ -25,7 +25,7 @@ import { MapMarkers } from './MapMarkers'
 import { MapShapes } from './MapShapes'
 import { MapLayer } from './model'
 
-const { BaseLayer } = LayersControl
+const { BaseLayer, Overlay } = LayersControl
 
 interface MapLayersProps {
   mapLayers: Array<MapLayer>
@@ -48,7 +48,7 @@ const MapLayers = (props: MapLayersProps) => {
   return (
     <Wrap>
       {mapLayers.map((layer: MapLayer, index: number): JSX.Element => {
-        if (layer.baseLayerName && mapLayers.length > 1) {
+        if (layer.baseLayerName && mapLayers.length > 1 && layer.baseLayer) {
           return (
             <BaseLayer
               key={`layer-${index}`}
@@ -57,7 +57,17 @@ const MapLayers = (props: MapLayersProps) => {
             >
               <Layer {...layer} />
             </BaseLayer>
-          )
+          );
+        } else if (layer.baseLayerName && !layer.baseLayer) {
+            return (
+              <Overlay
+                key={`layer-${index}`}
+                checked={layer.baseLayerIsChecked || false}
+                name={layer.baseLayerName || `Layer.${index}`}
+              >
+                <Layer {...layer} />
+            </Overlay>
+            );
         } else {
           return <Layer key={`layer-${index}`} {...layer} />
         }
