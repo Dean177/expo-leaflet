@@ -3,6 +3,7 @@ import type {
   LatLngBoundsLiteral,
   LatLngLiteral,
   PointTuple,
+  Map as LeafletMap,
 } from 'leaflet'
 import {
   CircleMarkerProps,
@@ -32,7 +33,7 @@ export type LeafletWebViewEvent =
   | { tag: 'Error'; error: any }
   | { tag: 'WindowEventListenerAdded' }
   | { tag: 'WindowEventListenerRemoved' }
-  | { tag: 'MapReady'; version: string }
+  | { tag: 'MapReady'; version: string, map: LeafletMap }
   | { tag: 'MapComponentMounted'; version: string }
   | { tag: 'onMapClicked'; location: LatLngLiteral }
   | MapMarkerClickedEvent

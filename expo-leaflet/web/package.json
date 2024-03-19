@@ -8,9 +8,7 @@
     "prebuild": "yarn clean && tsc",
     "build": "react-scripts build",
     "postbuild": "gulp build && cp ./dist/index.html ../assets/index.html && cp ./dist/index.html ../../demo/node_modules/expo-leaflet/assets/index.html",
-    "preinstall": "mv node_modules_temp node_modules",
-    "postinstall": "mv node_modules node_modules_temp",
-    "iterate": "mv node_modules_temp node_modules && yarn build && mv node_modules node_modules_temp"
+    "iterate": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
