@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "clean": "rm -f src/*.d.ts src/*.js ../assets/index.html ../../demo/node_modules/expo-leaflet/assets/index.html",
+    "clean": "rm -f src/*.d.ts src/*.js ../assets/index.html ../demo/node_modules/expo-leaflet/assets/index.html",
     "prebuild": "yarn clean && tsc",
     "build": "react-scripts build",
-    "postbuild": "gulp build && cp ./dist/index.html ../assets/index.html && cp ./dist/index.html ../../demo/node_modules/expo-leaflet/assets/index.html",
+    "postbuild": "gulp build && cp ./dist/index.html ../assets/index.html && cp ./dist/index.html ../demo/node_modules/expo-leaflet/assets/index.html",
     "iterate": "yarn build"
   },
   "eslintConfig": {
