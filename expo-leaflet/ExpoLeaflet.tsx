@@ -1,5 +1,3 @@
-import { Asset } from "expo-asset";
-import * as FileSystem from "expo-file-system";
 import isEqual from "lodash.isequal";
 import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -25,14 +23,8 @@ export const ExpoLeaflet = ({
 
     const loadHtmlFile = async () => {
       try {
-        const path = require(`./assets/index.html`);
-        const htmlFile: Asset = await Asset.fromModule(path);
-        await htmlFile.downloadAsync();
-        const webviewContent: string = await FileSystem.readAsStringAsync(
-          htmlFile.localUri!
-        );
         if (isNotCancelled) {
-          setWebviewContent(webviewContent);
+          setWebviewContent(require(`./assets/index.html`))
           onMessage({
             tag: "DebugMessage",
             message: "WebView content loaded",
@@ -151,7 +143,7 @@ export const ExpoLeaflet = ({
           }}
           originWhitelist={["*"]}
           renderLoading={loadingIndicator}
-          source={{ html: webViewContent }}
+          source={webViewContent}
           startInLoadingState={true}
         />
       )}
